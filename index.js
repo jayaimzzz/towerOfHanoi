@@ -1,14 +1,77 @@
+// // const (variable to keep track of which mode the player is in)
+// let playerHoldingDisc = false;
 
-// 2
-// down vote
-// After reading all these explanations I thought I'd weigh in with the method my professor used to explain the Towers of Hanoi recursive solution. Here is the algorithm again with n representing the number of rings, and A, B, C representing the pegs. The first parameter of the function is the number of rings, second parameter represents the source peg, the third is the destination peg, and fourth is the spare peg.
+const xLargeDisc = document.getElementById("xLargeDisc");
+const largeDisc = document.getElementById("largeDisc");
+const mediumDisc = document.getElementById("mediumDisc");
+const smallDisc = document.getElementById("smallDisc");
 
-// procedure Hanoi(n, A, B, C);
-//   if n == 1
-//     move ring n from peg A to peg B
-//   else
-//     Hanoi(n-1, A, C, B);
-//     move ring n-1 from A to C
-//     Hanoi(n-1, C, B, A);
-// end;
-// I was taught in graduate school to never to be ashamed to think small. So, let's look at this algorithm for n = 5. The question to ask yourself first is if I want to move the 5th ring from A to B, where are the other 4 rings? If the 5th ring occupies peg A and we want to move it to peg B, then the other 4 rings can only be on peg C. In the algorithm above the function Hanoi (n-1, A, C, B) is trying to move all those 4 other rings on to peg C, so ring 5 will be able to move from A to B. Following this algorithm we look at n = 4. If ring 4 will be moved from A to C, where are rings 3 and smaller? They can only be on peg B. Next, for n = 3, if ring 3 will be moved from A to B, where are rings 2 and 1? On peg C of course. If you continue to follow this pattern you can visualize what the recursive algorithm is doing. This approach differs from the novice's approach in that it looks at the last disk first and the first disk last.
+const towerOne = document.getElementById("startTower");
+const towerTwo = document.getElementById("offsetTower");
+const towerThree = document.getElementById("endTower");
+
+// towerOne.addEventListener("click", handleClick);
+// towerTwo.addEventListener("click", handleClick);
+// towerThree.addEventListener("click", handleClick);
+
+// // let playerHoldingDisc = [];
+
+
+// function handleClick(event) {
+//   const tower = event.target;
+//   removeDisc(tower);
+// }
+
+
+// function removeDisc(tower) {
+//   console.log("string_Disk", tower);
+//   if (playerHoldingDisc === false) {
+//     playerHoldingDisc.appendChild(tower);
+//   }
+
+//   if (playerHoldingDisc === true) {
+//     tower.appendChild(playerHoldingDisc);
+//   }
+
+// }
+
+// function placeDisc(tower) {
+//   console.log("Hello")
+// }
+
+const towers = [towerOne, towerTwo, towerThree];
+// let discInHand = [];
+
+towers.forEach( function(tower) 
+
+{
+  tower.addEventListener("click", pickUpDisc);
+
+})
+let discInHand = null
+function pickUpDisc(event) {
+  const tower = event.target
+  // console.log(tower.lastElementChild)
+  discInHand = tower.lastElementChild;
+  tower.removeChild(discInHand)
+  console.log(tower)
+  for (let i = 0; i < towers.length; i++){
+    towers[i].removeEventListener("click", pickUpDisc);
+    towers[i].addEventListener("click", dropDisc);
+  }
+  
+  
+}
+
+function dropDisc(event) {
+  const tower = event.target
+  console.log(tower)
+  tower.appendChild(discInHand);
+  discInHand = null;
+  for (let i = 0; i < towers.length; i++){
+    towers[i].removeEventListener("click", dropDisc);
+    towers[i].addEventListener("click", pickUpDisc);
+  }
+  // tower.removeEventListener("click", dropDisc);
+  // tower.addEventListener("click", pickUpDisc);
+}
