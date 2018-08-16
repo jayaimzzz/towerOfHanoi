@@ -42,36 +42,43 @@ const towerThree = document.getElementById("endTower");
 const towers = [towerOne, towerTwo, towerThree];
 // let discInHand = [];
 
-towers.forEach( function(tower) 
+towers.forEach(function (tower)
 
-{
-  tower.addEventListener("click", pickUpDisc);
+  {
+    tower.addEventListener("click", pickUpDisc);
 
-})
+  })
 let discInHand = null
+
 function pickUpDisc(event) {
   const tower = event.target
-  // console.log(tower.lastElementChild)
-  discInHand = tower.lastElementChild;
-  tower.removeChild(discInHand)
-  console.log(tower)
-  for (let i = 0; i < towers.length; i++){
-    towers[i].removeEventListener("click", pickUpDisc);
-    towers[i].addEventListener("click", dropDisc);
+  if (tower.childElementCount > 0) {
+    // console.log(tower.lastElementChild)
+    discInHand = tower.lastElementChild;
+    tower.removeChild(discInHand)
+    for (let i = 0; i < towers.length; i++) {
+      towers[i].removeEventListener("click", pickUpDisc);
+      towers[i].addEventListener("click", dropDisc);
+    }
+
   }
-  
-  
 }
 
 function dropDisc(event) {
   const tower = event.target
-  console.log(tower)
+  let sizeOfTopDisc = 5;
+  if (tower.childElementCount > 0) {
+    sizeOfTopDisc = parseInt(tower.lastElementChild.dataset.size)
+  }
+  if (discInHand.dataset.size < sizeOfTopDisc) {
+  
   tower.appendChild(discInHand);
   discInHand = null;
-  for (let i = 0; i < towers.length; i++){
+  for (let i = 0; i < towers.length; i++) {
     towers[i].removeEventListener("click", dropDisc);
     towers[i].addEventListener("click", pickUpDisc);
   }
+}
   // tower.removeEventListener("click", dropDisc);
   // tower.addEventListener("click", pickUpDisc);
 }
