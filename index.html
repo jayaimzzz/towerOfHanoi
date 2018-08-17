@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,35 @@
     <link rel="stylesheet" href="stylesheets.css">
     <title>Tower of Hanoi</title>
 </head>
+
 <body>
+    <div id="instrutions">
+        <div id="headerDiv"> <h2>Tower of Hanoi</h2></div>
+        <ol>
+            <p>The objective of the puzzle is to move the entire stack of disks to another box, obeying the following simple rules:</p>
+            <li>Only one disk can be moved at a time.</li>
+            <li>Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack.</li>
+            <li>No disk may be placed on top of a smaller disk.</li>
+        </ol>
+    </div>
     <div id="wrapper">
-    <div class="tower" id="startTower">
-        <div class="disc" id="xLargeDisc" data-size="4"></div>
-        <div class="disc" id="largeDisc" data-size="3"></div>
-        <div class="disc" id="mediumDisc" data-size="2"></div>
-        <div class="disc" id="smallDisc" data-size="1"></div>
+        <div class="tower" id="startTower">
+            <div class="disc" id="xLargeDisc" data-size="4"></div>
+            <div class="disc" id="largeDisc" data-size="3"></div>
+            <div class="disc" id="mediumDisc" data-size="2"></div>
+            <div class="disc" id="smallDisc" data-size="1"></div>
+
+        </div>
+
+
+        <div class="tower" id="offsetTower"></div>
+
+        <div class="tower" id="endTower"></div>
 
     </div>
-
-
-    <div class="tower" id="offsetTower"></div>
-
-    <div class="tower" id="endTower"></div>
-
-    </div>
+    <div id="youWinDiv"></div>
     <script src="index.js"></script>
 
 </body>
+
 </html>

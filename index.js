@@ -23,7 +23,7 @@ function setCursorToMove(discInHand) {
   let sizeOfDiscInHand = parseInt(discInHand.dataset.size)
   console.log("size Of Disc in hand: " + sizeOfDiscInHand)
   towers.forEach(function (tower) {
-      tower.style.cursor = "move";
+    tower.style.cursor = "move";
     if (tower.childElementCount > 0 && sizeOfDiscInHand > parseInt(tower.lastElementChild.dataset.size)) {
       tower.style.cursor = "not-allowed"
     }
@@ -67,7 +67,15 @@ function dropDisc(event) {
       towers[i].addEventListener("click", pickUpDisc);
     }
     resetGrabCursor();
-  } else {
-    alert("A larger disk cannot be placed on top of a smaller disk.");
+  } 
+    // else {
+    // alert("A larger disk cannot be placed on top of a smaller disk.");
+  // }
+  if (towerTwo.childElementCount == 4 || towerThree.childElementCount == 4) {
+    const youWinText = document.createTextNode("You Win!");
+    const newP = document.createElement('p');
+    const desination = document.getElementById('youWinDiv');
+    newP.appendChild(youWinText);
+    desination.appendChild(newP);
   }
 }

@@ -1,15 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #87A16E;
+    color: #272521;
+}
+h2 {
+    color: #562127;
+}
+#headerDiv {
+    display: flex;
+    justify-content: center;
+}
+#youWinDiv {
+    font-size: xx-large;
+}
 .tower {
-    height: 100px;
-    width: 100px;
-    border: 2px solid blue;
-    background-color: pink;
+    background-color: #C2C693;
+    height: 200px;
+    width: 200px;
+    border: 2px solid #272521;
     flex-direction: column-reverse;
     display: flex;
     align-items: center;
+    margin: 5px;
 }
 
 .disc {
-    height: 10px;
+    height: 30px;
     border-radius: 5px;
 }
 
@@ -19,23 +37,30 @@
     
 }
 
+#rod {
+    background-color: black;
+    height: 90%;
+    width: 10px;
+
+}
+
 #smallDisc {
-    background-color: blue;
-    width: 20px;
+    background-color: #33446A;
+    width: 40px;
 }
 
 #mediumDisc {
-    background-color: purple;
-    width: 40px;
+    background-color: #d6eb3e;
+    width: 80px;
 
 }
 
 #largeDisc {
-    background-color: green;
-    width: 60px;
+    background-color: #299025;
+    width: 120px;
 }
 
 #xLargeDisc {
-    background-color: red;
-    width: 80px;
+    background-color: #C75136;
+    width: 160px;
 }
