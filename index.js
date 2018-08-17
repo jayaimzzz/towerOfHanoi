@@ -13,17 +13,28 @@ function resetGrabCursor() {
   towers.forEach(function (tower) {
     if (tower.childElementCount > 0) {
       tower.style.cursor = "grab";
+    } else {
+      tower.style.cursor = "auto";
     }
   })
 }
-function setCursorToMove() {
+
+function setCursorToMove(discInHand) {
+  let sizeOfDiscInHand = parseInt(discInHand.dataset.size)
+  console.log("size Of Disc in hand: " + sizeOfDiscInHand)
   towers.forEach(function (tower) {
-    if (tower.childElementCount > 0) {
+    // if (tower.childElementCount > 0) {
       tower.style.cursor = "move";
+    // } else {
+    //   tower.style.cursor = "auto"
+    // }
+    if (tower.childElementCount > 0 && sizeOfDiscInHand > parseInt(tower.lastElementChild.dataset.size)) {
+      tower.style.cursor = "not-allowed"
     }
+    // console.log(tower.las)
   })
-  
 }
+
 resetGrabCursor();
 towers.forEach(function (tower) {
   tower.addEventListener("click", pickUpDisc);
@@ -36,7 +47,7 @@ function pickUpDisc(event) {
   const tower = event.currentTarget
   if (tower.childElementCount > 0) {
     discInHand = tower.lastElementChild;
-    setCursorToMove();
+    setCursorToMove(discInHand);
     tower.removeChild(discInHand)
     document.getElementById("wrapper").style.cursor = "move"
     for (let i = 0; i < towers.length; i++) {
@@ -60,9 +71,9 @@ function dropDisc(event) {
       towers[i].removeEventListener("click", dropDisc);
       towers[i].addEventListener("click", pickUpDisc);
     }
-    resetGrabCursor();
   } else {
     alert("A larger disk cannot be placed on top of a smaller disk.")
   }
+  resetGrabCursor();
 
 }
