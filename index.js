@@ -1,6 +1,3 @@
-// // const (variable to keep track of which mode the player is in)
-// let playerHoldingDisc = false;
-
 const xLargeDisc = document.getElementById("xLargeDisc");
 const largeDisc = document.getElementById("largeDisc");
 const mediumDisc = document.getElementById("mediumDisc");
@@ -9,53 +6,39 @@ const smallDisc = document.getElementById("smallDisc");
 const towerOne = document.getElementById("startTower");
 const towerTwo = document.getElementById("offsetTower");
 const towerThree = document.getElementById("endTower");
-
-// towerOne.addEventListener("click", handleClick);
-// towerTwo.addEventListener("click", handleClick);
-// towerThree.addEventListener("click", handleClick);
-
-// // let playerHoldingDisc = [];
-
-
-// function handleClick(event) {
-//   const tower = event.target;
-//   removeDisc(tower);
-// }
-
-
-// function removeDisc(tower) {
-//   console.log("string_Disk", tower);
-//   if (playerHoldingDisc === false) {
-//     playerHoldingDisc.appendChild(tower);
-//   }
-
-//   if (playerHoldingDisc === true) {
-//     tower.appendChild(playerHoldingDisc);
-//   }
-
-// }
-
-// function placeDisc(tower) {
-//   console.log("Hello")
-// }
-
+towerThree.onclick
 const towers = [towerOne, towerTwo, towerThree];
-// let discInHand = [];
 
-towers.forEach(function (tower)
-
-  {
-    tower.addEventListener("click", pickUpDisc);
-
+function resetGrabCursor() {
+  towers.forEach(function (tower) {
+    if (tower.childElementCount > 0) {
+      tower.style.cursor = "grab";
+    }
   })
+}
+function setCursorToMove() {
+  towers.forEach(function (tower) {
+    if (tower.childElementCount > 0) {
+      tower.style.cursor = "move";
+    }
+  })
+  
+}
+resetGrabCursor();
+towers.forEach(function (tower) {
+  tower.addEventListener("click", pickUpDisc);
+})
 let discInHand = null
 
 function pickUpDisc(event) {
-  const tower = event.target
+
+
+  const tower = event.currentTarget
   if (tower.childElementCount > 0) {
-    // console.log(tower.lastElementChild)
     discInHand = tower.lastElementChild;
+    setCursorToMove();
     tower.removeChild(discInHand)
+    document.getElementById("wrapper").style.cursor = "move"
     for (let i = 0; i < towers.length; i++) {
       towers[i].removeEventListener("click", pickUpDisc);
       towers[i].addEventListener("click", dropDisc);
@@ -65,20 +48,21 @@ function pickUpDisc(event) {
 }
 
 function dropDisc(event) {
-  const tower = event.target
-  let sizeOfTopDisc = 5;
+  const tower = event.currentTarget
+  let sizeOfTopDisc = 500;
   if (tower.childElementCount > 0) {
     sizeOfTopDisc = parseInt(tower.lastElementChild.dataset.size)
   }
   if (discInHand.dataset.size < sizeOfTopDisc) {
-  
-  tower.appendChild(discInHand);
-  discInHand = null;
-  for (let i = 0; i < towers.length; i++) {
-    towers[i].removeEventListener("click", dropDisc);
-    towers[i].addEventListener("click", pickUpDisc);
+    tower.appendChild(discInHand);
+    discInHand = null;
+    for (let i = 0; i < towers.length; i++) {
+      towers[i].removeEventListener("click", dropDisc);
+      towers[i].addEventListener("click", pickUpDisc);
+    }
+    resetGrabCursor();
+  } else {
+    alert("A larger disk cannot be placed on top of a smaller disk.")
   }
-}
-  // tower.removeEventListener("click", dropDisc);
-  // tower.addEventListener("click", pickUpDisc);
+
 }
