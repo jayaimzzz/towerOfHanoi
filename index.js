@@ -9,6 +9,8 @@ const towerThree = document.getElementById("endTower");
 towerThree.onclick
 const towers = [towerOne, towerTwo, towerThree];
 
+let numberOfMoves = 0;
+
 function resetGrabCursor() {
   towers.forEach(function (tower) {
     if (tower.childElementCount > 0) {
@@ -21,7 +23,6 @@ function resetGrabCursor() {
 
 function setCursorToMove(discInHand) {
   let sizeOfDiscInHand = parseInt(discInHand.dataset.size)
-  console.log("size Of Disc in hand: " + sizeOfDiscInHand)
   towers.forEach(function (tower) {
     tower.style.cursor = "move";
     if (tower.childElementCount > 0 && sizeOfDiscInHand > parseInt(tower.lastElementChild.dataset.size)) {
@@ -67,15 +68,20 @@ function dropDisc(event) {
       towers[i].addEventListener("click", pickUpDisc);
     }
     resetGrabCursor();
+    numberOfMoves++
   } 
     // else {
     // alert("A larger disk cannot be placed on top of a smaller disk.");
   // }
   if (towerTwo.childElementCount == 4 || towerThree.childElementCount == 4) {
-    const youWinText = document.createTextNode("You Win!");
+    const youWinText = document.createTextNode("You Win! And it took you only " + numberOfMoves + " moves!");
     const newP = document.createElement('p');
     const desination = document.getElementById('youWinDiv');
+    desination.innerHTML = "";
     newP.appendChild(youWinText);
     desination.appendChild(newP);
+    towers.forEach(function(tower){
+      tower.style.backgroundColor = "pink";
+    });
   }
 }
