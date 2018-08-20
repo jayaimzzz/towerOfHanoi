@@ -2,6 +2,12 @@ const xLargeDisc = document.getElementById("xLargeDisc");
 const largeDisc = document.getElementById("largeDisc");
 const mediumDisc = document.getElementById("mediumDisc");
 const smallDisc = document.getElementById("smallDisc");
+const towerFive = document.getElementById("disc5");
+const towerSix = document.getElementById("disc6");
+const towerSeven = document.getElementById("disc7");
+const towerEight = document.getElementById("disc8");
+const towerNine = document.getElementById("disc9");
+const towerTen = document.getElementById("disc10");
 
 const towerOne = document.getElementById("startTower");
 const towerTwo = document.getElementById("offsetTower");
@@ -69,14 +75,19 @@ function dropDisc(event) {
     }
     resetGrabCursor();
     numberOfMoves++
+    let numberOfMovesText = document.createTextNode("Number of moves: " + numberOfMoves);
+    let newParagrah = document.createElement('p');
+    const desination = document.getElementById('youWinDiv');
+    desination.innerHTML = "";
+    newParagrah.appendChild(numberOfMovesText);
+    desination.appendChild(newParagrah)
   } 
     // else {
     // alert("A larger disk cannot be placed on top of a smaller disk.");
   // }
-  if (towerTwo.childElementCount == 4 || towerThree.childElementCount == 4) {
+  if (towerTwo.childElementCount == 10 || towerThree.childElementCount == 10) {
     const youWinText = document.createTextNode("You Win! And it took you only " + numberOfMoves + " moves!");
     const newP = document.createElement('p');
-    const desination = document.getElementById('youWinDiv');
     desination.innerHTML = "";
     newP.appendChild(youWinText);
     desination.appendChild(newP);

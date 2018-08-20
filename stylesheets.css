@@ -28,7 +28,7 @@ h2 {
 }
 
 .disc {
-    height: 30px;
+    height: 15px;
     border-radius: 5px;
 }
 
@@ -47,21 +47,53 @@ h2 {
 
 #smallDisc {
     background-color: #33446A;
-    width: 40px;
+    width: 30px;
 }
 
 #mediumDisc {
     background-color: #d6eb3e;
-    width: 80px;
+    width: 45px;
 
 }
 
 #largeDisc {
-    background-color: #299025;
-    width: 120px;
+    background-color: #33446A;
+    /* background-color: #299025; */
+    width: 60px;
 }
 
 #xLargeDisc {
-    background-color: #C75136;
-    width: 160px;
+    background-color: #d6eb3e;
+    /* background-color: #C75136; */
+    width: 75px;
+}
+#disc5 {
+    background-color: #33446A;
+    /* background-color: #33446A; */
+    width: 90px;
+}
+#disc6 {
+    background-color: #d6eb3e;
+    /* background-color: #d6eb3e; */
+    width: 105px;
+}
+#disc7 {
+    background-color: #33446A;
+    /* background-color: #299025; */
+    width: 120px;
+}
+#disc8 {
+    background-color: #d6eb3e;
+    /* background-color: #C75136; */
+    width: 135px;
+}
+#disc9 {
+    background-color: #33446A;
+    /* background-color: #33446A; */
+    width: 150px;
+}
+#disc10 {
+    background-color: #d6eb3e;
+    /* background-color: #d6eb3e; */
+    width: 165px;
 }
